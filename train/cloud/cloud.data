@@ -1,0 +1,6 @@
+classes= 1  
+train  = cloud/train.txt  
+valid  = cloud/test.txt  
+names = cloud/cloud.name
+backup = cloud/backup
+results = cloud/results
