@@ -5,3 +5,7 @@
 3. 命名 需預測的衛星影像圖片 為 0.jpg (替代原本的0.jpg)
 4. 執行 yolov3.exe
 5. 執行完畢後 得到預測結果 rect.jpg 和 binary.jpg
+
+:::warning
+編譯 yolov3.cpp 時 請務必使用 opencv3.4.3
+:::
