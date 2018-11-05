@@ -7,4 +7,4 @@
 5. 執行完畢後 得到預測結果 rect.jpg 和 binary.jpg
 
 
-> 編譯 yolov3.cpp 時 請務必使用 opencv3.4.3
+        編譯 yolov3.cpp 時 請務必使用 opencv3.4.3
