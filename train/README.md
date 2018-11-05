@@ -10,6 +10,6 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 6. (更改 training set) 替換 darknet/build/darknet/x64/cloud/labels/
 7. (更改 training set) 執行 darknet/build/darknet/x64/cloud/**divideTestTrainSet.py** 自動生成新的 **test.txt** 和 **train.txt**
 8. 執行 darknet/build/darknet/x64/cloud/train.bat 開始訓練YOLO
-9. 訓練結果 每100次迭代後的weight 將會存到 darknet/build/darknet/x64/backup/ 資料夾
+9. 訓練結果 每100次迭代後的weight 將會 save 至 darknet/build/darknet/x64/backup/ 資料夾
 
         若不需要更改 training set 請跳過 步驟5.~步驟7.
