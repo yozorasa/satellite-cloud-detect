@@ -3,7 +3,7 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 ## YOLO Train
 
 1. clone https://github.com/AlexeyAB/darknet.git
-2. 以 visual studio 打開 clone 後的 darknet/build/darknet/darknet.sln
+2. 以 visual studio 打開 clone 後的 darknet/build/darknet/**darknet.sln**
 3. 建置 darknet
 4. 將此專案的 satellite-cloud-detect/train/cloud/ 資料夾 複製到darknet/build/darknet/x64/
 5. (更改 training set) 替換 darknet/build/darknet/x64/cloud/images/
