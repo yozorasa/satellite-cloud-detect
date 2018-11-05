@@ -1,5 +1,5 @@
 # satellite-cloud-detect
-        此專案以 Windows 為環境建置
+        此專案以 Windows 做為環境建置
 clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 ## YOLO Test
