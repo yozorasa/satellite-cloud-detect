@@ -34,51 +34,51 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 - 簡介: 只有GrabCut 的雲層偵測方法
 - 參數設置: 
-        - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
-        - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
-        - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
-        - fIndex: 要預測的衛星影像編號
+  - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
+  - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
+  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
+  - fIndex: 要預測的衛星影像編號
 - 使用步驟:
-        1. 待預測的衛星影像重新命名為 **0.jpg**、**1.jpg**、**2.jpg**、、、
-        2. 建立目標資料夾儲存輸出影像，資料夾內新增 **img**、**lbp**、**hull** 三個空資料夾
-        3. 檔案路徑設置(filePlace、srcfilePlace)，其餘參數視需要修改
-        4. 以 openCV C++ 環境編譯並執行
+  1. 待預測的衛星影像重新命名為 **0.jpg**、**1.jpg**、**2.jpg**、、、
+  2. 建立目標資料夾儲存輸出影像，資料夾內新增 **img**、**lbp**、**hull** 三個空資料夾
+  3. 檔案路徑設置(filePlace、srcfilePlace)，其餘參數視需要修改
+  4. 以 openCV C++ 環境編譯並執行
 - 輸出結果: 
-        - lbp 資料夾: 各別雲層ROI 與 LBP轉換結果，做為SVM Training Set
-        - hull 資料夾: 衛星影像偵測出雲層位置後，經hull簡化輪廓的二值化影像
-        - img 資料夾:
-                a. 包含圈選輪廓之灰階影像
-                b. 未經雲層大小篩選之二值化雲層偵測影像
-                c. 經雲層大小篩選，且標示出各雲層區域ROI
-                d. 洋紅為底之前景影像
+  - lbp 資料夾: 各別雲層ROI 與 LBP轉換結果，做為SVM Training Set
+  - hull 資料夾: 衛星影像偵測出雲層位置後，經hull簡化輪廓的二值化影像
+  - img 資料夾:
+    1. 包含圈選輪廓之灰階影像
+    2. 未經雲層大小篩選之二值化雲層偵測影像
+    3. 經雲層大小篩選，且標示出各雲層區域ROI
+    4. 洋紅為底之前景影像
 
 
 ### grabCutAndSVM.cpp
 
 - 簡介: 包含SVM Training，與GrabCut雲層偵測後以SVM Test 分類前景是否為雲層
 - 參數設置: 
-        - record: SVM 訓練模型儲存路徑(ex: D:/SVM/)
-        - loadLocationC: 雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/cloud/)
-        - loadLocationO: 非雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/notCloud/)
-        - svmFileName: SVM Training Model 儲存檔案名稱
-        - cloudAmount: 雲層Training Data 數量
-        - otherAmount: 非雲層Training Data 數量
-        - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
-        - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
-        - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
-        - fIndex: 要預測的衛星影像編號
+  - record: SVM 訓練模型儲存路徑(ex: D:/SVM/)
+  - loadLocationC: 雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/cloud/)
+  - loadLocationO: 非雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/notCloud/)
+  - svmFileName: SVM Training Model 儲存檔案名稱
+  - cloudAmount: 雲層Training Data 數量
+  - otherAmount: 非雲層Training Data 數量
+  - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
+  - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
+  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
+  - fIndex: 要預測的衛星影像編號
 - 使用步驟:
-        1. 人工分類LBP影像，分成雲與非雲兩個資料夾，影像各自重新命名為 **0_lbp.jpg**、**1_lbp.jpg**、**2_lbp.jpg**、、、
-        2. 建立目標資料夾儲存輸出影像，資料夾內新增 **img**、**lbp** 兩個空資料夾
-        3. 檔案路徑設置 (record、loadLocationC、loadLocationO、filePlace、srcfilePlace)
-        4. SVM Training 數量(cloudAmount、otherAmount)，**histogramCal與tag地鎮葉維度也要同步修改**
-        5. 以 openCV C++ 環境編譯並執行
+  1. 人工分類LBP影像，分成雲與非雲兩個資料夾，影像各自重新命名為 **0_lbp.jpg**、**1_lbp.jpg**、**2_lbp.jpg**、、、
+  2. 建立目標資料夾儲存輸出影像，資料夾內新增 **img**、**lbp** 兩個空資料夾
+  3. 檔案路徑設置 (record、loadLocationC、loadLocationO、filePlace、srcfilePlace)
+  4. SVM Training 數量(cloudAmount、otherAmount)，**histogramCal與tag參數的陣列維度也要同步修改**
+  5. 以 openCV C++ 環境編譯並執行
 - 輸出結果: 
-        - lbp 資料夾: 各別雲層ROI 與 LBP轉換結果，做為SVM Training Set
-        - img 資料夾:
-                1. origin: 包含圈選輪廓之原圖影像
-                2. beforeFilter: 未經雲層大小篩選之二值化雲層偵測影像
-                3. onlySizeFilter: 經雲層大小篩選之二值化雲層偵測影像
-                4. afterSVMFilter: 經SVM Test篩選之二值化雲層偵測影像
+  - lbp 資料夾: 各別雲層ROI 與 LBP轉換結果，做為SVM Training Set
+  - img 資料夾:
+    1. origin: 包含圈選輪廓之原圖影像
+    2. beforeFilter: 未經雲層大小篩選之二值化雲層偵測影像
+    3. onlySizeFilter: 經雲層大小篩選之二值化雲層偵測影像
+    4. afterSVMFilter: 經SVM Test篩選之二值化雲層偵測影像
 
 
