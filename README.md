@@ -4,8 +4,8 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 ## YOLO Test
 
-1. 以 opencv c++ 編譯 satellite-cloud-detect/test/**yolov3.cpp**
-2. 將 編譯完成的 yolov3.exe 放置至 satellite-cloud-detect/test/ 資料夾 (替代原本的yolov3.exe)
+1. 以 opencv c++ 編譯 satellite-cloud-detect/AI-base/test/**yolov3.cpp**
+2. 將 編譯完成的 yolov3.exe 放置至 satellite-cloud-detect/AI-base/test/ 資料夾 (替代原本的yolov3.exe)
 3. 命名 需預測的衛星影像圖片 為 **0.jpg** (替代原本的0.jpg)
 4. 執行 **yolov3.exe**
 5. 執行完畢後 得到預測結果 **rect.jpg** 和 **binary.jpg**
@@ -17,7 +17,7 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 1. clone https://github.com/AlexeyAB/darknet.git
 2. 以 visual studio 打開 clone 後的 darknet/build/darknet/**darknet.sln**
 3. 建置 darknet
-4. 將此專案的 satellite-cloud-detect/train/cloud/ 資料夾 複製到darknet/build/darknet/x64/
+4. 將此專案的 satellite-cloud-detect/AI-base/train/cloud/ 資料夾 複製到darknet/build/darknet/x64/
 5. (更改 training set) 替換 darknet/build/darknet/x64/cloud/images/
 6. (更改 training set) 替換 darknet/build/darknet/x64/cloud/labels/
 7. (更改 training set) 執行 darknet/build/darknet/x64/cloud/**divideTestTrainSet.py** 自動生成新的 **test.txt** 和 **train.txt**
@@ -35,8 +35,8 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 - 簡介: 只有GrabCut 的雲層偵測方法
 - 參數設置: 
   - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
-  - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
-  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
+  - filePlace: 輸出檔案儲存位置，路徑(ex: satellite-cloud-detect/Tradition/grabCut_only/example_result)
+  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: satellite-cloud-detect/Tradition/grabCut_only/example_inputImage)
   - fIndex: 要預測的衛星影像編號
 - 使用步驟:
   1. 待預測的衛星影像重新命名為 **0.jpg**、**1.jpg**、**2.jpg**、、、
@@ -57,15 +57,15 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 - 簡介: 包含SVM Training，與GrabCut雲層偵測後以SVM Test 分類前景是否為雲層
 - 參數設置: 
-  - record: SVM 訓練模型儲存路徑(ex: D:/SVM/)
-  - loadLocationC: 雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/cloud/)
-  - loadLocationO: 非雲層LBP 影像訓練資料集影像路徑(ex: D:/SVM/Training/notCloud/)
+  - record: SVM 訓練模型儲存路徑(ex: satellite-cloud-detect/Tradition/grabCutAndSVM/example_result/)
+  - loadLocationC: 雲層LBP 影像訓練資料集影像路徑(ex: satellite-cloud-detect/Tradition/grabCutAndSVM/example_SVMTrainingSet/cloud/)
+  - loadLocationO: 非雲層LBP 影像訓練資料集影像路徑(ex: satellite-cloud-detect/Tradition/grabCutAndSVM/example_SVMTrainingSet/notCloud/)
   - svmFileName: SVM Training Model 儲存檔案名稱
   - cloudAmount: 雲層Training Data 數量
   - otherAmount: 非雲層Training Data 數量
   - whiteRGB: 雲層二值化的灰度門檻值(範圍: 0 - 255)
-  - filePlace: 輸出檔案儲存位置，路徑(ex: D:/result)
-  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: D:/data/)
+  - filePlace: 輸出檔案儲存位置，路徑(ex: satellite-cloud-detect/Tradition/grabCutAndSVM/example_result)
+  - srcfilePlace: 衛星影像來原檔案位置，路徑(ex: satellite-cloud-detect/Tradition/grabCutAndSVM/example_inputImage/)
   - fIndex: 要預測的衛星影像編號
 - 使用步驟:
   1. 人工分類LBP影像，分成雲與非雲兩個資料夾，影像各自重新命名為 **0_lbp.jpg**、**1_lbp.jpg**、**2_lbp.jpg**、、、
