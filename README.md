@@ -12,9 +12,6 @@ clone https://github.com/yozorasa/satellite-cloud-detect.git
 
         編譯 yolov3.cpp 時 請務必使用 opencv3.4.3
 
-## YOLO Train
-
-clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 ## YOLO Train
 
