@@ -1,5 +1,6 @@
 # satellite-cloud-detect
         此專案以 Windows 做為環境建置
+        Satellite Cloud Image Source From https://discover.digitalglobe.com/
 clone https://github.com/yozorasa/satellite-cloud-detect.git
 
 ## YOLO Test
