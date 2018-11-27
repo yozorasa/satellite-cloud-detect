@@ -141,8 +141,8 @@ int main(int argc, char** argv)
         binYOLO = binAll.clone();
         binYOLO.setTo(Scalar::all(0));
 
-        for (int i = 0; i < binAll.rows; ++i) {
-            for (int j = 0; j < binAll.cols; ++j) {
+        for (int i = 0; i < binAll.rows; i++) {
+            for (int j = 0; j < binAll.cols; j++) {
                 int idata = binAll.at<uchar>(i, j);
                 if (idata < 140)
                     binAll.at<uchar>(i, j) = 0;
@@ -206,7 +206,7 @@ void postprocess(Mat& frame, Mat& binYOLO, Mat& binAll, const vector<Mat>& outs)
                 int height = (int)(data[3] * frame.rows);
                 int left = centerX - width / 2;
                 int top = centerY - height / 2;
-
+                
                 classIds.push_back(classIdPoint.x);
                 confidences.push_back((float)confidence);
                 boxes.push_back(Rect(left, top, width, height));
@@ -222,18 +222,33 @@ void postprocess(Mat& frame, Mat& binYOLO, Mat& binAll, const vector<Mat>& outs)
     {
         int idx = indices[i];
         Rect box = boxes[idx];
-        drawPred(classIds[idx], confidences[idx], box.x, box.y,
-            box.x + box.width, box.y + box.height, frame, binYOLO, binAll);
+        int left = box.x;
+        int top = box.y;
+        int right = box.x + box.width;
+        int bottom = box.y + box.height;
+        if (left < 0)
+            left = 0;
+        if (top < 0)
+            top = 0;
+        if (right > frame.cols)
+            right = frame.cols;
+        if (bottom > frame.rows)
+            bottom = frame.rows;
+        drawPred(classIds[idx], confidences[idx], left, top,
+            right, bottom, frame, binYOLO, binAll);
     }
 }
 
 // Draw the predicted bounding box
 void drawPred(int classId, float conf, int left, int top, int right, int bottom, Mat& frame, Mat& binYOLO, Mat& binAll)
 {
-    for (int i = top; i < bottom; ++i)
-        for (int j = left; j < right; ++j)
+    //cout << endl;
+    //cout << left << " " << right << endl;
+    //cout << top << " " << bottom << endl;
+    for (int i = top; i < bottom; i++)
+        for (int j = left; j < right; j++)
             binYOLO.at<uchar>(i, j) = binAll.at<uchar>(i, j);
-
+            
     //Draw a rectangle displaying the bounding box
     rectangle(frame, Point(left, top), Point(right, bottom), Scalar(255, 178, 50), 3);
 
